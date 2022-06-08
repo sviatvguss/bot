@@ -1,6 +1,7 @@
 package commands
 
 import (
+	"fmt"
 	"log"
 	"strconv"
 
@@ -16,15 +17,17 @@ func (c *Commander) Get(inputMessage *tgbotapi.Message) {
 		return
 	}
 
+	var msgText string
 	product, err := c.productService.Get(idx)
 	if err != nil {
-		log.Printf("fail to get product with idx %d: %v", idx, err)
-		return
+		msgText = fmt.Sprintf("Sorry, failed to get product with index %d: %v", idx+1, err)
+	} else {
+		msgText = product.Title
 	}
 
 	msg := tgbotapi.NewMessage(
 		inputMessage.Chat.ID,
-		product.Title,
+		msgText,
 	)
 
 	c.bot.Send(msg)

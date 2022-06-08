@@ -2,7 +2,7 @@ package commands
 
 import (
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
-	"github.com/istrel/bot/internal/service/product"
+	"github.com/sviatvguss/bot/internal/service/product"
 )
 
 type Commander struct {
